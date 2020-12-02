@@ -1,16 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import { useHistory } from "react-router-dom";
+import CityList from "./../components/CityList";
+import data from "./../data/cities.json";
 
-const MainPage = props => {
+const MainPage = (props) => {
+  const history = useHistory();
+
+  const onClickHandler = () => {
+    history.push("/city");
+  };
+
   return (
     <div>
-      MainPage
+      <h2>Cities list</h2>
+      <CityList cities={data} onClickCity={onClickHandler}></CityList>
     </div>
-  )
-}
+  );
+};
 
-MainPage.propTypes = {
-
-}
-
-export default MainPage
+export default MainPage;

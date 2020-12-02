@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 import CityInfo from "../CityInfo";
 import Weather from "../Weather";
 import { stateByName } from "../../utils/config";
@@ -8,8 +10,8 @@ import { stateByName } from "../../utils/config";
 const renderCityInfo = (onClickCity) => (city) => {
   const { city: currentCity, country } = city;
   return (
-    <li key={currentCity} onClick={onClickCity}>
-      <Grid container justify="center" alignItems="flex-start">
+    <ListItem button key={currentCity} onClick={onClickCity}>
+      <Grid container justify="center" alignItems="center">
         <Grid item xs={12} md={8}>
           <CityInfo city={currentCity} country={country}></CityInfo>
         </Grid>
@@ -17,15 +19,15 @@ const renderCityInfo = (onClickCity) => (city) => {
           <Weather temperature={10} state={stateByName.sunny}></Weather>
         </Grid>
       </Grid>
-    </li>
+    </ListItem>
   );
 };
 
 const CityList = ({ cities, onClickCity }) => {
   return (
-    <div>
+    <List>
       <ul>{cities.map((city) => renderCityInfo(onClickCity)(city))}</ul>
-    </div>
+    </List>
   );
 };
 

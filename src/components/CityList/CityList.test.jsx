@@ -1,17 +1,7 @@
 import React from "react";
 import CityList from "./CityList";
 import { fireEvent, render } from "@testing-library/react";
-
-const cities = [
-  {
-    city: "Trujillo",
-    country: "Perú",
-  },
-  {
-    city: "Buenos Aires",
-    country: "Argentina",
-  },
-];
+import data from "../../data/cities.json";
 
 test("CityList render", async () => {
   // #region Arrange
@@ -20,14 +10,14 @@ test("CityList render", async () => {
 
   // #region Action
   const { findAllByRole } = render(
-    <CityList cities={cities} onClickCity={() => {}} />
+    <CityList cities={data} onClickCity={() => {}} />
   );
-  const items = await findAllByRole("listitem");
+  const items = await findAllByRole("button");
 
   // #endregion
 
   // #region Assert
-  expect(items).toHaveLength(cities.length);
+  expect(items).toHaveLength(data.length);
   // #endregion
 });
 
@@ -38,9 +28,9 @@ test("CityList click on item", async () => {
 
   // #region Action
   const { findAllByRole } = render(
-    <CityList cities={cities} onClickCity={fnClickOnItem} />
+    <CityList cities={data} onClickCity={fnClickOnItem} />
   );
-  const items = await findAllByRole("listitem");
+  const items = await findAllByRole("button");
   fireEvent.click(items[0]);
   // #endregion
 

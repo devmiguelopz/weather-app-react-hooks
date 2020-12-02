@@ -44,3 +44,6 @@ name.test.jsx
 
 //provedores de contexto: el contexto lo provee una cracateristica que o hace diferente
 // muy facil s puede altera la informacion de un componente
+
+-----------------------------------------------HOOKS--------------------------------
+useHistory hook de react router (historial manejador) meneja la url del nevegador y permite cambiarla

@@ -1,0 +1,7 @@
+[
+  {"hour":7,"state":"cloud","temperature":10,"weekDay":"Monday"},
+  {"hour":5,"state":"fog","temperature":25,"weekDay":"Tuesday"},
+  {"hour":11,"state":"cloudy","temperature":20,"weekDay":"Wednesday"},
+  {"hour":10,"state":"rain","temperature":20,"weekDay":"Thursday"},
+  {"hour":12,"state":"rain","temperature":17,"weekDay":"Thursday"}
+]

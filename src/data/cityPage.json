@@ -1,0 +1,24 @@
+{
+  "city": "Buenos Aires",
+  "country": "Argentina",
+  "state": "cloudy",
+  "temperature": 20,
+  "humidity": 80,
+  "wind": 5,
+  "Chart": [
+    { "dayHour": "Jue 18", "min": 14, "max": 22 },
+    { "dayHour": "Vie 06", "min": 18, "max": 27 },
+    { "dayHour": "Vie 12", "min": 18, "max": 28 },
+    { "dayHour": "Vie 18", "min": 18, "max": 25 },
+    { "dayHour": "Sab 06", "min": 15, "max": 22 },
+    { "dayHour": "Sab 12", "min": 12, "max": 19 }
+  ],
+  "Forecast": [
+    { "hour": 18, "state": "sunny", "temperature": 17, "weekDay": "Thursday" },
+    { "hour": 6, "state": "cloud", "temperature": 18, "weekDay": "Friday" },
+    { "hour": 12, "state": "fog", "temperature": 18, "weekDay": "Friday" },
+    { "hour": 18, "state": "cloudy", "temperature": 19, "weekDay": "Friday" },
+    { "hour": 6, "state": "rain", "temperature": 17, "weekDay": "Saturday" },
+    { "hour": 12, "state": "rain", "temperature": 17, "weekDay": "Saturday" }
+  ]
+}
