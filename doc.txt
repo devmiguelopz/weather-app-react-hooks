@@ -1,0 +1,46 @@
+rafcp => 
+r => react
+af => arrow function
+c => component
+p => with prototypes
+
+
+ptsr (proptye required )
+--------------------------------------------------------
+
+material ui - show text => typography
+
+//CSF component story format  
+
+Test:testing
+name.test.jsx
+
+// create react app , default @testing-library/react 
+
+
+// write test with AAA
+
+ - ARRANGE
+ - EXECUTE
+ - ASSERT
+
+
+
+ //TDD
+ 1.- ESCRIBIR LA PRUEBA QUE FALLE
+ 2.- PASA SATISFACTORIAMENTE
+ 3.- REFACTORIZA CODIGO
+
+ // los requisitos son establecidos por pruebas
+
+ //ciclo
+ 1.-requisito
+ 2.-Escribimos una pruebas
+ 3.- verificamos que la prueba falla
+ 4.- escribimos la implementacion, escribimos el codigo de la forma mas sencilla, utilizar kizz
+ 5.- refactorizar code y tieene que pasar todo
+
+
+
+//provedores de contexto: el contexto lo provee una cracateristica que o hace diferente
+// muy facil s puede altera la informacion de un componente
