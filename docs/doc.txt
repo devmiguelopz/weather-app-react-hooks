@@ -47,3 +47,14 @@ name.test.jsx
 
 -----------------------------------------------HOOKS--------------------------------
 useHistory hook de react router (historial manejador) meneja la url del nevegador y permite cambiarla
+
+
+
+https://api.openweathermap.org/data/2.5/weather?q=Trujillo&appid=0c2939809d551fcfa1712a7d04117e14
+
+//llamda por get in powershell
+Invoke-RestMethod -Uri https://api.openweathermap.org/data/2.5/weather?q=Trujillo&appid=0c2939809d551fcfa1712a7d04117e14
+
+
+variables de entorno en react-app
+https://create-react-app.dev/docs/adding-custom-environment-variables/

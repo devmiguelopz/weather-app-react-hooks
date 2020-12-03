@@ -7,6 +7,9 @@ import {
   WiDayFog,
   WiDaySunny,
   WiRain,
+  WiSnow,
+  WiRainMix,
+  WiThunderstorm,
 } from "react-icons/wi";
 
 const stateByNameMap = {
@@ -15,6 +18,11 @@ const stateByNameMap = {
   [stateByName.fog]: WiDayFog,
   [stateByName.sunny]: WiDaySunny,
   [stateByName.rain]: WiRain,
+  [stateByName.clouds]: WiDayCloudy,
+  [stateByName.clear]: WiDaySunny,
+  [stateByName.snow]: WiSnow,
+  [stateByName.drizzle]: WiRainMix,
+  [stateByName.thunderstorm]: WiThunderstorm,
 };
 
 const IconState = ({ state }) => {

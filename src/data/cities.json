@@ -1,4 +1,7 @@
 [
-  {"city":"Trujillo","country":"Perú"},
-  {"city":"Buenos Aires","country":"Argentina"}
+  {"city":"Trujillo","country":"Perú","countryCode":"PE"},
+  {"city":"Buenos Aires","country":"Argentina","countryCode":"AR"},
+  {"city":"Bogotá","country":"Colombia","countryCode":"CO"},
+  {"city":"Ciudad de México","country":"Mexico","countryCode":"MX"},
+  {"city":"Madrid","country":"España","countryCode":"ES"}
 ]
