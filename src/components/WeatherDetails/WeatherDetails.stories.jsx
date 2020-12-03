@@ -11,6 +11,6 @@ export default weatherDetailsComponent;
 
 export const WeatherDetailsExample = () => (
   <>
-    <WeatherDetails humidity={20} win={10}></WeatherDetails>
+    <WeatherDetails humidity={20} wind={10}></WeatherDetails>
   </>
 );

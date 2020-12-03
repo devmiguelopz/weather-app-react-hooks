@@ -12,10 +12,10 @@ const renderCityInfo = (onClickCity) => (city) => {
   return (
     <ListItem button key={currentCity} onClick={onClickCity}>
       <Grid container justify="center" alignItems="center">
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={9}>
           <CityInfo city={currentCity} country={country}></CityInfo>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <Weather temperature={10} state={stateByName.sunny}></Weather>
         </Grid>
       </Grid>
@@ -24,11 +24,7 @@ const renderCityInfo = (onClickCity) => (city) => {
 };
 
 const CityList = ({ cities, onClickCity }) => {
-  return (
-    <List>
-      <ul>{cities.map((city) => renderCityInfo(onClickCity)(city))}</ul>
-    </List>
-  );
+  return <List>{cities.map((city) => renderCityInfo(onClickCity)(city))}</List>;
 };
 
 CityList.propTypes = {

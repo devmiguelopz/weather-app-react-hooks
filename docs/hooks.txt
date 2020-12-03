@@ -1,0 +1,57 @@
+useRef
+----------------------------------
+me permite refrenciar elemenetos directamente en el dom
+const myRefDiv = useRef(null);
+myRefDiv.current 
+const myRefDiv = useRef(null);
+    <div ref={myRefDiv}>
+      WelcomeScreen
+      {children}
+    </div>
+
+
+
+
+useState
+----------------------------------
+Maneja los esatdos del componete
+  const [vanta, setVanta] = useState(0);
+
+
+
+
+
+useState
+----------------------------------
+Se ejecuta para manejas esatdos del componente, devuelve una funcion  que se ejecuta antes de llamar al use efect, 
+dependencia array vacio solo ejecuta una  sola  vez
+Se Tiene que tener cuidado con los clousures el devolver una function es para el despomnateje o limieza
+const WelcomeScreen = ({ children }) => {
+  console.info("Init WelcomeScreen")
+  const myRefDiv = useRef(null);
+  const [vanta, setVanta] = useState(0);
+  console.info("Init vanta =>",vanta)
+  console.info("myRefDiv.current =>", myRefDiv);
+
+  useEffect(() => {
+    console.info("Init useffect")
+    console.info("useEffect/myRefDiv.current =>", myRefDiv);
+    if (vanta === 0) {
+      console.info("vanta === 0 after setVanta =>", vanta);
+      setVanta(1);
+      console.info("vanta === 0 before setVanta =>", vanta);
+    } else {
+      console.info("vanta !== 0 =>", vanta);
+    }
+    return function () {
+      console.info("return useffect")
+    }
+  },[vanta]);
+  return (
+    <div ref={myRefDiv}>
+      WelcomeScreen
+      {children}
+    </div>
+  );
+};
+explaicicón https://www.youtube.com/watch?v=0_D8ruGVp20
