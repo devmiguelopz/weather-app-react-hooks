@@ -67,3 +67,14 @@ tranform es como si fuera el control maneja toda la logigca dela transformacion 
 
 
 
+si el componente se va los estados tambien
+
+componenets resilentes:
+seilencia: pueden adaptarse a situaciones adversas, componentes se debe adaptar a difernetes situaciones.
+
+
+
+no paremos el flujo de datos (por eso no debemos mandar el [} en use efect apra que no pare el flujo])
+y que no sea un singleton
+
+actions me permiten enviar un objeto de acciones o data paa no estar agregando propiedades en el arbol de dependencias de react

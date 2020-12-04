@@ -10,15 +10,29 @@ import cities from "../data/cities.json";
 import useCityPage from "../hooks/useCityPage";
 import useCityList from "../hooks/useCityList";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { getCountryNameByCountryCode } from "../utils/library";
+import { getCountryNameByCountryCode, getIndexCity } from "../utils/library";
 
-const CityPage = (props) => {
-  const { data, forecastItemList, city, countryCode } = useCityPage();
+const CityPage = ({ data, actions }) => {
+  const { allWeather, allChartData, allForecastItemList } = data;
+
+  const { onSetAllWeather, onSetChartData, onSetForecastItemList } = actions;
+
+  const { city, countryCode } = useCityPage(
+    allChartData,
+    allForecastItemList,
+    onSetChartData,
+    onSetForecastItemList
+  );
+
   let cityMemo = React.useMemo(() => [{ city, countryCode }], [
     city,
     countryCode,
   ]);
-  const { allWeather } = useCityList(cityMemo);
+
+  const cityIndex = getIndexCity(allWeather, city, countryCode);
+
+  useCityList(cityMemo, allWeather, onSetAllWeather, cityIndex);
+
   const country =
     countryCode && getCountryNameByCountryCode(cities, countryCode);
 
@@ -30,25 +44,28 @@ const CityPage = (props) => {
         </Grid>
         <Grid container item xs={12} justify="center" alignItems="center">
           <Weather
-            state={allWeather[0].data?.state}
-            temperature={allWeather[0].data?.temperature}
+            state={allWeather[cityIndex].data?.state}
+            temperature={allWeather[cityIndex].data?.temperature}
           />
-          {allWeather[0].data?.humidity && allWeather[0].data?.wind && (
-            <WeatherDetails
-              humidity={allWeather[0].data.humidity}
-              wind={allWeather[0].data.wind}
-            />
-          )}
+          {allWeather[cityIndex].data?.humidity &&
+            allWeather[cityIndex].data?.wind && (
+              <WeatherDetails
+                humidity={allWeather[cityIndex].data.humidity}
+                wind={allWeather[cityIndex].data.wind}
+              />
+            )}
         </Grid>
         <Grid item>
-          {!data.length > 0 && !forecastItemList.length > 0 && (
+          {!allChartData[`${city}_${countryCode}`] && !allForecastItemList[`${city}_${countryCode}`] && (
             <LinearProgress />
           )}
         </Grid>
-        <Grid item>{data.length > 0 && <ForecastChart data={data} />}</Grid>
         <Grid item>
-          {forecastItemList.length > 0 && (
-            <Forecast forecasts={forecastItemList} />
+          {allChartData[`${city}_${countryCode}`] && <ForecastChart data={allChartData[`${city}_${countryCode}`]} />}
+        </Grid>
+        <Grid item>
+          {allForecastItemList[`${city}_${countryCode}`] && (
+            <Forecast forecasts={allForecastItemList[`${city}_${countryCode}`]} />
           )}
         </Grid>
       </Grid>

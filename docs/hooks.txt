@@ -179,3 +179,71 @@ const useCityList = (cities) => {
 };
 
 export default useCityList;
+
+
+
+useCllback()
+------------------------------------------
+Me permite meorizar una funcion callback de acuerdo a la depencia, es igual a use memo solo que use memo puede devolver cualquier tipo de valor
+y guaradr en memoria con el tiempo sus valores
+
+
+En cada renderización, todo lo que está dentro de un componente funcional se ejecutará de nuevo. Si un componente secundario tiene una dependencia de una función del componente primario, el elemento secundario volverá a representar cada vez que el elemento primario vuelva a representarse incluso si esa función "no cambia" (la referencia cambia, pero lo que hace la función no).
+Se usa para la optimización evitando renderizaciones innecesarias desde el elemento secundario, haciendo que la función cambie la referencia solo cuando cambian las dependencias. Debe utilizarlo cuando una función e
+
+
+"Cada función de devolución de llamada debe ser memorizada para evitar la re-renderización inútil de componentes secundarios que utilizan la función de devolución de llamada" es el razonamiento de sus compañeros de equipo.
+
+Este razonamiento está lejos de la verdad. Además, este uso de hace que el componente sea más lento. useCallback()
+
+para lo que tiene que ver con eventos
+
+esto permite crera unicas instancias de funciones para que no se vuelvan a renderiar los componesnts
+
+const { useState, useCallback } = React
+const functionsCounter = new Set()
+
+const Counter = () => {
+  const [count, setCount] = useState(0)
+  const [otherCounter, setOtherCounter] = useState(0)
+  
+  const increment = useCallback(() => {
+    setCount(count + 1)
+  }, [count])
+  const decrement = useCallback(() => {
+    setCount(count - 1)
+  }, [count])
+  const incrementOtherCounter = useCallback(() => {
+    setOtherCounter(otherCounter + 1)
+  }, [otherCounter])
+
+  /*
+  const increment = (() => {
+    setCount(count + 1)
+  })
+  const decrement = (() => {
+    setCount(count - 1)
+  })
+  const incrementOtherCounter = (() => {
+    setOtherCounter(otherCounter + 1)
+  })
+  */
+
+  functionsCounter.add(increment)
+  functionsCounter.add(decrement)
+  functionsCounter.add(incrementOtherCounter)
+
+  console.log(functionsCounter.size)
+  
+  return (
+    <>
+      Count: {count}
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
+      <button onClick={incrementOtherCounter}>incrementOtherCounter</button>
+    </>
+  )
+}
+
+ReactDOM.render(<Counter />, document.getElementById('app'))
+https://flaviocopes.com/react-hook-usecallback/
