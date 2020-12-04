@@ -15,7 +15,7 @@ const App = props => {
         <Route exact path="/main">
           <MainPage></MainPage>
         </Route>
-        <Route exact path="/city">
+        <Route exact path="/city/:countryCode/:city">
           <CityPage></CityPage>
         </Route>
         <Route>

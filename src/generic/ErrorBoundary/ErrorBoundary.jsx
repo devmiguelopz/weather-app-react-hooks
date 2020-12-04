@@ -5,40 +5,24 @@ class ErrorBoundary extends Component {
     super(props);
 
     this.state = {
-      active: false,
+      hasError: false,
     };
   }
 
-  IsActive = () => {
-    return this.state.active ? "Active" : "No active";
-  };
-
-  onClickHandler = () => {
-    this.setState({ active: !this.state.active });
-  };
-
-  componentDidMount() {
-    console.log("The component has been assembled");
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log("Preview state:", prevState.active);
-    console.log("New state:", this.state.active);
-    console.log("The component has been updated");
-  }
-
-  componentWillUnmount() {
-    console.log("The component has been dismount");
+  componentDidCatch(error, errorInfo) {
+    console.log("ErrorInfo", errorInfo);
   }
 
   render() {
-    return (
-      <div>
-        <button onClick={this.onClickHandler}>Activar</button>
-        <h1>
-          ErrorBoundary {this.props.say} -{this.IsActive()}
-        </h1>
-      </div>
+    console.info("render");
+    return this.state.hasError ? (
+      <h1>Error</h1>
+    ) : (
+      <div>{this.props.children}</div>
     );
   }
 }

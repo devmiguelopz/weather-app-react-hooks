@@ -23,11 +23,12 @@ const stateByNameMap = {
   [stateByName.snow]: WiSnow,
   [stateByName.drizzle]: WiRainMix,
   [stateByName.thunderstorm]: WiThunderstorm,
+  [stateByName.mist]: WiThunderstorm,
 };
 
 const IconState = ({ state }) => {
   const IconState = stateByNameMap[state];
-  return <IconState></IconState>;
+  return <WiDaySunny></WiDaySunny>;
 };
 
 IconState.propTypes = {

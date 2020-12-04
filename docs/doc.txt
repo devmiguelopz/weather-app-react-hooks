@@ -58,3 +58,12 @@ Invoke-RestMethod -Uri https://api.openweathermap.org/data/2.5/weather?q=Trujill
 
 variables de entorno en react-app
 https://create-react-app.dev/docs/adding-custom-environment-variables/
+https://www.youtube.com/watch?v=TFIt9o6BWqA
+
+
+
+
+tranform es como si fuera el control maneja toda la logigca dela transformacion de la data para componente
+
+
+

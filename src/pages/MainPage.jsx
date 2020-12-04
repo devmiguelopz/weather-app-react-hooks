@@ -8,8 +8,9 @@ import data from "./../data/cities.json";
 const MainPage = (props) => {
   const history = useHistory();
 
-  const onClickHandler = () => {
-    history.push("/city");
+  const onClickHandler = (city, countryCode) => {
+    console.info(city, countryCode)
+    history.push(`/city/${countryCode}/${city}`);
   };
 
   return (

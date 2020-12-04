@@ -1,4 +1,4 @@
-const stateByNameList = ["cloud", "cloudy", "sunny", "fog", "rain", "clouds", "clear", "snow", "drizzle", "thunderstorm"];
+const stateByNameList = ["cloud", "cloudy", "sunny", "fog", "rain", "clouds", "clear", "snow", "drizzle", "thunderstorm","mist"];
 
 const stateByName = {
   cloud: stateByNameList[0],
@@ -11,6 +11,7 @@ const stateByName = {
   snow: stateByNameList[7],
   drizzle: stateByNameList[8],
   thunderstorm: stateByNameList[9],
+  mist: stateByNameList[10],
 }
 export {
   stateByNameList,

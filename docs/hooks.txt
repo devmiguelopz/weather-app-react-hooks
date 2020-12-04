@@ -54,4 +54,128 @@ const WelcomeScreen = ({ children }) => {
     </div>
   );
 };
+
+customHook
+CityList.jsx:36 CityList
+useCityList.jsx:10 useEffect
+useCityList.jsx:6 customHook
+CityList.jsx:36 CityList
+
 explaicicón https://www.youtube.com/watch?v=0_D8ruGVp20
+
+
+useHistory (me permite no recargar la pagina)
+----------------------------------
+me Pemite trabajar con 
+"historial de navegadores": una implementación específica de DOM, útil en navegadores web que admiten la API de historial HTML5
+"historial de hash" - Una implementación específica de DOM para navegadores web heredados
+"historial de memoria": una implementación de historial en memoria, útil en entornos de pruebas y no DOM como React Native
+El objeto DOM window proporciona acceso al historial del navegador a través del objeto history . Este da acceso a métodos y propiedades útiles que permiten avanzar y retroceder a través del historial del usuario, así como --a partir de HTML5-- manipular el contenido del historial
+
+
+
+React.StrictMode: me permite manejar el trabajo estricto, seguirdad, avertencia , absoletos etc para sus hijos, se desabilita del modo productivo
+
+
+
+useParams()
+----------------------------------
+Devuelve parametros de url
+ objParams = useParams()
+
+
+ 
+useCustomHook()
+----------------------------------
+Permite modularizar mis hooks
+
+
+useDebugValue()
+----------------------------------
+permite verificar valores el el componetes de la consola
+
+
+
+
+
+
+
+useMemo()
+------------------------------------------
+Si calculars un valor de una matriz de 100000 de filas el resultado no lo vas a querer hacer nuevamente cuando renderize cierto componente
+En primer lugar debe saber que sólo se puede memorizar funciones puras, es decir, funciones cuya salida depende puramente de sus argumentos.
+y me retorna un valor
+
+Por lo tanto, en resumen, haría memoizationization cuando sabe que la mayoría de las veces la entrada sigue siendo la misma y no desearía volver a calcular innecesariamente el resultado una y otra vez para la misma entrada, especialmente cuando el cálculo es costoso, lo que puede significar que el conjunto de datos en el que se debe realizar el cálculo es grande
+
+Un caso de uso de la memoria es Que React puede ser cuando se intenta filtrar datos de una matriz grande.
+
+Otro caso sería cuando se desea transformar un objeto anidado basado en algunos parámetros en otro objeto o matriz.
+
+En tal como el caso es muy útil. Si la matriz y los criterios de filtro siguen siendo los mismos en los re-renderizados, el cálculo no se realiza de nuevo en su lugar los datos calculados previamente se devuelven desde la memoria caché useMemo
+  useMemo(() => {
+    const allWeatherPromise = allWeather.map((weather) =>
+      axios.get(
+        `${process.env.REACT_APP_API_URL_OPEN_WEATHER_MAP}weather?q=${weather.city},${weather.countryCode}&appid=${process.env.REACT_APP_API_KEY_OPEN_WEATHER_MAP}`
+      )
+    );
+    async function executePromiseAllWeather() {
+      try {
+        const result = await Promise.all(allWeatherPromise);
+        setAllWeather(getAllWeather(result, allWeather));
+      } catch (error) {
+        if (error.response) {
+          setError("An error has occurred on the weather server, please retry");
+        } else if (error.request) {
+          setError("Check your internet connection, please retry");
+        } else {
+          setError("Error loading data, please retry");
+        }
+      }
+    }
+    error || executePromiseAllWeather();
+  }, [error]);
+  Memoization es el proceso de almacenar un valor calculado para que no tenga que volver a calcularlo de nuevo.
+En react, los usos más comunes son los de los valores derivados de un almacén de redux (para el que existe volver a seleccionar),o una memoria completa de los componentes funcionales.
+No hay una regla de oro para decidir si una función es costosa y debe ser memorizada, ya que depende en gran medida de su caso de uso específico, y es un obstáculo de rendimiento, pero por lo general se guarda para el filtrado/clasificación de matrices, o cosas por el estilo.
+La mejor manera de saber qué se debe memorizar y qué no es generar perfiles de la aplicación, ver qué cálculos toman más recursos y memorizarlos para ver si hace una diferencia.
+import { useState, useEffect,useMemo } from "react";
+import axios from "axios";
+import getAllWeather from "../utils/transform/getAllWeather";
+
+const useCityList = (cities) => {
+  debugger;
+  const [allWeather, setAllWeather] = useState([...cities]);
+  const [error, setError] = useState(null);
+
+  const allWeatherPromise = useMemo(() => {
+    debugger;
+    return cities.map((weather) =>
+      axios.get(
+        `${process.env.REACT_APP_API_URL_OPEN_WEATHER_MAP}weather?q=${weather.city},${weather.countryCode}&appid=${process.env.REACT_APP_API_KEY_OPEN_WEATHER_MAP}`
+      )
+    );
+  }, [cities]);
+
+
+  useEffect(() => {
+    async function executePromiseAllWeather() {
+      try {
+        const result = await Promise.all(allWeatherPromise);
+        setAllWeather(getAllWeather(result, allWeather));
+      } catch (error) {
+        if (error.response) {
+          setError("An error has occurred on the weather server, please retry");
+        } else if (error.request) {
+          setError("Check your internet connection, please retry");
+        } else {
+          setError("Error loading data, please retry");
+        }
+      }
+    }
+    error || executePromiseAllWeather();
+  }, [error]);
+  return { allWeather, error, setError };
+};
+
+export default useCityList;

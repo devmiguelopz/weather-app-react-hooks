@@ -7,14 +7,19 @@ const errorBoundaryComponent = {
 };
 export default errorBoundaryComponent;
 
-export const ErrorBoundaryWithExample = () => (
+const ComponentWithoutError = () => <h1>No error</h1>;
+
+const prop = {};
+const ComponentWithError = () => <h1>{prop.test.test}</h1>;
+
+export const ErrorBoundaryWithError = () => (
   <ErrorBoundary>
-    <h1>{(undefined).test}</h1>
+    <ComponentWithError />
   </ErrorBoundary>
 );
 
-export const ErrorBoundaryWithoutErrorExample = () => (
+export const ErrorBoundaryWithoutError = () => (
   <ErrorBoundary>
-    <h1>Success!!!!</h1>
+    <ComponentWithoutError />
   </ErrorBoundary>
 );
