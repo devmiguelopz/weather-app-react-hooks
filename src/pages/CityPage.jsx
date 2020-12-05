@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import CityInfo from "./../components/CityInfo";
 import Weather from "./../components/Weather";
@@ -11,8 +11,13 @@ import useCityPage from "../hooks/useCityPage";
 import useCityList from "../hooks/useCityList";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { getCountryNameByCountryCode, getIndexCity } from "../utils/library";
+import { WeatherDispatchContext, WeatherStateContext } from "../WeatherContext";
 
-const CityPage = ({ data, actions }) => {
+const CityPage = () => {
+
+  const actions=useContext(WeatherDispatchContext)
+  const data = useContext(WeatherStateContext)
+
   const { allWeather, allChartData, allForecastItemList } = data;
 
 

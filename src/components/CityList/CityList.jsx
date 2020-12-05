@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -7,6 +7,10 @@ import Alert from "@material-ui/lab/Alert";
 import CityInfo from "../CityInfo";
 import Weather from "../Weather";
 import useCityList from "../../hooks/useCityList";
+import {
+  WeatherDispatchContext,
+  WeatherStateContext
+} from '../../WeatherContext'
 
 const renderCityInfo = (onClickCity) => (city) => {
   const { city: currentCity, country, countryCode, data } = city;
@@ -31,7 +35,11 @@ const renderCityInfo = (onClickCity) => (city) => {
   );
 };
 
-const CityList = ({ cities, onClickCity, actions, data }) => {
+const CityList = ({ cities, onClickCity }) => {
+
+  const actions=useContext(WeatherDispatchContext)
+  const data = useContext(WeatherStateContext)
+
   const { allWeather } = data;
   const { error, setError } = useCityList(cities, allWeather, actions);
   return (
@@ -54,8 +62,6 @@ CityList.propTypes = {
     })
   ).isRequired,
   onClickCity: PropTypes.func.isRequired,
-  actions: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
 };
 
 export default CityList;
