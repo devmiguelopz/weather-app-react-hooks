@@ -15,13 +15,11 @@ import { getCountryNameByCountryCode, getIndexCity } from "../utils/library";
 const CityPage = ({ data, actions }) => {
   const { allWeather, allChartData, allForecastItemList } = data;
 
-  const { onSetAllWeather, onSetChartData, onSetForecastItemList } = actions;
 
   const { city, countryCode } = useCityPage(
     allChartData,
     allForecastItemList,
-    onSetChartData,
-    onSetForecastItemList
+    actions
   );
 
   let cityMemo = React.useMemo(() => [{ city, countryCode }], [
@@ -31,7 +29,7 @@ const CityPage = ({ data, actions }) => {
 
   const cityIndex = getIndexCity(allWeather, city, countryCode);
 
-  useCityList(cityMemo, allWeather, onSetAllWeather, cityIndex);
+  useCityList(cityMemo, allWeather, actions, cityIndex);
 
   const country =
     countryCode && getCountryNameByCountryCode(cities, countryCode);

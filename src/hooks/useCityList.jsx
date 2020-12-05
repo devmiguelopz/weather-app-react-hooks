@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import getAllWeather from "../utils/transform/getAllWeather";
 
-const useCityList = (cities, allWeather, onSetAllWeather, indexCity = null) => {
+const useCityList = (cities, allWeather, actions, indexCity = null) => {
   const [error, setError] = useState(null);
   useEffect(() => {
     const usingDataApi = [];
@@ -23,7 +23,10 @@ const useCityList = (cities, allWeather, onSetAllWeather, indexCity = null) => {
       async function executePromiseAllWeather() {
         try {
           const result = await Promise.all(allWeatherPromise);
-          onSetAllWeather(getAllWeather(result, cities));
+          actions({
+            type: "SET_ALL_WEATHER",
+            payload: getAllWeather(result, cities),
+          });
         } catch (error) {
           if (error.response) {
             setError(
@@ -38,7 +41,7 @@ const useCityList = (cities, allWeather, onSetAllWeather, indexCity = null) => {
       }
       error || executePromiseAllWeather();
     }
-  }, [error, cities, allWeather, onSetAllWeather, indexCity]);
+  }, [error, cities, allWeather, actions, indexCity]);
   return { error, setError };
 };
 

@@ -247,3 +247,13 @@ const Counter = () => {
 
 ReactDOM.render(<Counter />, document.getElementById('app'))
 https://flaviocopes.com/react-hook-usecallback/
+
+
+
+
+UseReducer()
+---------------------------
+const [state, dispatch] = useReducer(reducer, initialValue)
+recibe reducer que es la funcion de logica de negocio, el valor inicial del state
+devueleve el state, y el dispach de acción del reducer.
+https://codesandbox.io/s/ejemplo-basico-usereducer-jus0q ejemplo
